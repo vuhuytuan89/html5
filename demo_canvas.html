@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>Demo Canvas</title></head>
+<body>
+<p>Vẽ cùng với javaScript</p>
+<canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+<p>Vẽ đường thẳng</p>
+<canvas id="myCanvas2" width="200" height="100" style="border:1px solid #000000;">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+<p>Vẽ gradient</p>
+<canvas id="myCanvas3" width="200" height="100" style="border:1px solid #000000;">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+
+<script type="text/javascript">
+	var i = 0;
+function DrawJavascript(){
+	var c = document.getElementById('myCanvas');
+	var ctx = c.getContext('2d');
+	ctx.fillStyle = "Green";
+
+	if(i<150) i++;
+	else
+	return;
+	ctx.fillRect(0,0,i,i/2);
+	setTimeout("DrawJavascript();",50);
+}
+DrawJavascript();
+
+function DrawLine(){
+	var c = document.getElementById("myCanvas2");
+	var ctx = c.getContext("2d");
+	ctx.moveTo(0,0);
+	if(i<200) i++;
+	else
+	return;
+	ctx.lineTo(i,i/2);
+	ctx.stroke();
+	setTimeout("DrawLine();",5);
+}
+DrawLine();
+
+function DrawRadian(){
+	var c = document.getElementById("myCanvas3");
+	var ctx = c.getContext("2d");
+
+	// Create gradient
+	var grd = ctx.createRadialGradient(75,50,5,90,60,100);
+	grd.addColorStop(0,"red");
+	grd.addColorStop(1,"white");
+
+	if(i<150) i++;
+	else
+	return;
+	// Fill with gradient
+	ctx.fillStyle = grd;
+	ctx.fillRect(10,10,i,i/2);
+	setTimeout("DrawRadian();",15);
+}
+DrawRadian();
+</script>
+
+</body>
+</html>
